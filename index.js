@@ -1,4 +1,7 @@
 import { program } from "commander";
+import { listContacts, getContactById, removeContact, addContact } from "./contacts.js";
+import colors from "colors";
+
 program
   .option("-a, --action <type>", "choose action")
   .option("-i, --id <type>", "user id")
@@ -7,26 +10,43 @@ program
   .option("-p, --phone <type>", "user phone");
 
 program.parse();
-
 const options = program.opts();
 
 // TODO: рефакторити
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
-      // ...
+        const data = await listContacts();
+        console.table(data);
       break;
-
     case "get":
-      // ... id
+      // ... id 
+        const contact = await getContactById(id);
+        if(!contact){
+          console.log("Contact not found".red)
+          break; 
+        } 
+        console.table(contact);
       break;
 
     case "add":
-      // ... name email phone
+      const newContact = await addContact(name, email, phone);
+      if(!newContact){
+        console.log("All fields must be filled in".red)
+        break;
+      }
+      console.log("You added new contact:".green);
+      console.table(newContact);
       break;
 
     case "remove":
-      // ... id
+        const removeData = await removeContact(id);
+        if(!removeData){
+          console.log("Contact not found, nothing to remove".red)
+          break; 
+        }
+        console.log(`You removed contact with id: ${id}`.green);
+        console.table(removeData);
       break;
 
     default:
