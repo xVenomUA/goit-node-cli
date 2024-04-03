@@ -12,7 +12,7 @@ program
 program.parse();
 const options = program.opts();
 
-// TODO: рефакторити
+
 async function invokeAction({ action, id, name, email, phone }) {
   switch (action) {
     case "list":
@@ -20,7 +20,7 @@ async function invokeAction({ action, id, name, email, phone }) {
         console.table(data);
       break;
     case "get":
-      // ... id 
+
         const contact = await getContactById(id);
         if(!contact){
           console.log("Contact not found".red)

@@ -7,7 +7,7 @@ const contactsPath = './db/contacts.json';
 
 
 async  function listContacts() {
-  // ...твій код. Повертає масив контактів.
+
     try {
     const data = await fs.readFile(contactsPath);
     return JSON.parse(data);
@@ -50,7 +50,7 @@ async function addContact(name, email, phone) {
     email,
     phone,
   };
-  // ...твій код. Повертає об'єкт доданого контакту (з id).
+
   try {
     if (!name || !email || !phone) {
       return null;
