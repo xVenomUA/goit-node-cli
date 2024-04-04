@@ -1,9 +1,9 @@
 
 import { promises as fs } from "fs";
 import { nanoid } from "nanoid";
-import { stringify } from 'querystring';
+import path from "path";
 
-const contactsPath = './db/contacts.json';
+const contactsPath = path.join("db", "contacts.json"); // path.resolve("db/contacts.json")
 
 
 async  function listContacts() {

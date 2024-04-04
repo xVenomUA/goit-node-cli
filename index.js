@@ -23,7 +23,7 @@ async function invokeAction({ action, id, name, email, phone }) {
 
         const contact = await getContactById(id);
         if(!contact){
-          console.log("Contact not found".red)
+          console.log(contact)
           break; 
         } 
         console.table(contact);
@@ -32,7 +32,7 @@ async function invokeAction({ action, id, name, email, phone }) {
     case "add":
       const newContact = await addContact(name, email, phone);
       if(!newContact){
-        console.log("All fields must be filled in".red)
+        console.log(newContact)
         break;
       }
       console.log("You added new contact:".green);
@@ -42,7 +42,7 @@ async function invokeAction({ action, id, name, email, phone }) {
     case "remove":
         const removeData = await removeContact(id);
         if(!removeData){
-          console.log("Contact not found, nothing to remove".red)
+          console.log(removeData)
           break; 
         }
         console.log(`You removed contact with id: ${id}`.green);
